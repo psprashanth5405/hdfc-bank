@@ -49,7 +49,8 @@ jobs:
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
-          dependency-scan:
+
+  dependency-scan:
     runs-on: ubuntu-latest
 
     steps:
