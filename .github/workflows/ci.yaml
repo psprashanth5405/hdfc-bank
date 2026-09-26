@@ -25,3 +25,27 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean package
+
+  sast:
+    runs-on: ubuntu-latest
+
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: java
+
+      - name: Build application
+        run: mvn clean package
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
